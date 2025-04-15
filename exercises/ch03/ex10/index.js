@@ -1,0 +1,14 @@
+const sym1 = Symbol("a");
+const sym2 = Symbol("a");
+let o  = {};
+o[sym1] = 1;
+o[sym2] = 2;
+console.log(o[sym1]);
+console.log(o[sym2]);
+const symFor1 = Symbol.for("a");
+const symFor2 = Symbol.for("a");
+let o2  = {};
+o2[symFor1] = 1;
+o2[symFor2] = 2;
+console.log(o2[symFor1]);
+console.log(o2[symFor2]);
