@@ -1,6 +1,6 @@
 
 // 文字列のパラメータを取り、制御文字など文字列リテラル作成時エスケープシーケンスで記述する必要がある文字 (p37 表 3-1 の\\より上)を、エスケープシーケンスに変換した文字列を返すメソッドを書きなさい。例えば文字列中に\が含まれていたら、\\に変換しなさい。if-else で分岐するバージョンと switch で分岐するバージョンの両方を作りなさい。
-class EscapeString {
+export class EscapeString {
     withIfElse(str: string): string {
         let result = '';
     for (let i = 0; i < str.length; i++) {
