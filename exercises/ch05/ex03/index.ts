@@ -1,5 +1,6 @@
 export type MonthType = "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec";
 
+// 列挙型のチェックの時は全ての値を列挙した方が丁寧
 export class Month {
     checkDaysIfElse(month: MonthType): boolean {
         if (month === "Jan") {
@@ -30,8 +31,10 @@ export class Month {
             case "Oct":
             case "Dec":
                 return true;
+                break;
             default:
                 return false;
+                break;
         }
     }
 }

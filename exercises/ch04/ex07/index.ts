@@ -7,6 +7,6 @@ function set42(key: string) {
 let hello: number = 0;
 // set42("hello");
 //無限ループに入る
-set42("while (hello !== 10) hello");
+set42("while (let hello !== 10) hello");
 console.log(hello); // 42
 
