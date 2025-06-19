@@ -7,10 +7,10 @@ describe("DynamicSizeArrayのチェックテスト", () => {
     dynamicArray.set(0, 1);
     dynamicArray.set(1, 2);
     dynamicArray.set(2, 3);
-    dynamicArray.set(10, 42); // 配列を拡張
+    dynamicArray.set(10, 42);
 
     expect(dynamicArray.get(10)).toBe(42);
-    expect(dynamicArray.get(5)).toBeUndefined(); // 未設定のインデックスは undefined
+    expect(dynamicArray.get(5)).toBeUndefined();
     expect(dynamicArray.length()).toBe(4);
   });
 
@@ -20,7 +20,7 @@ describe("DynamicSizeArrayのチェックテスト", () => {
     dynamicArray.push(1);
     dynamicArray.push(2);
 
-    expect(dynamicArray.get(5)).toBeUndefined(); // 未設定のインデックスは undefined
+    expect(dynamicArray.get(5)).toBeUndefined();
     expect(dynamicArray.length()).toBe(2);
   });
   it("負のインデックスにアクセスした場合", () => {

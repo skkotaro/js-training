@@ -14,8 +14,8 @@ describe("テスト", () => {
   });
   it("カスタム比較関数の動作を確認", () => {
     const seq = [5, 3, 4, 1, 2];
-expect(sort(seq, (a, b) => a - b)).toStrictEqual([1, 2, 3, 4, 5]); // 昇順
-expect(sort(seq, (a, b) => b - a)).toStrictEqual([5, 4, 3, 2, 1]); // 降順
-expect(seq).toStrictEqual([5, 3, 4, 1, 2]); // 元の配列は変更されない
+expect(sort(seq, (a, b) => a - b)).toStrictEqual([1, 2, 3, 4, 5]);
+expect(sort(seq, (a, b) => b - a)).toStrictEqual([5, 4, 3, 2, 1]);
+expect(seq).toStrictEqual([5, 3, 4, 1, 2]);
   });
 });
