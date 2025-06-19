@@ -15,6 +15,3 @@ export function selectionSort (arr: number[]): number[] {
     }
     return result;
 }
-
-let c = [10, 49, 20, 59, 34, 10, 34, 3, 1];
-console.log(selectionSort(c)); // [1, 3, 10, 10, 20, 34, 34, 49, 59]
