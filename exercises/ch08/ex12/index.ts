@@ -16,6 +16,16 @@
 // f は引数に関数の本体を文字列として受け取る
 // 関数の本体で使用する引数は $1, $2, ... のように記載し、 $10 までサポートする
 export const f = (contents: string) => {
+    // 引数名として使用する文字列の配列を定義
+    // $1, $2, ..., $10 までの引数をサポート
     const argArray = ["$1", "$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9", "$10"];
-    return new Function(...argArray, contents.includes("return")? contents: `return ${contents}`);
+
+    // Function コンストラクタを使用して新しい関数を作成
+    // - 引数リストとして argArray を展開
+    // - 関数の本体として contents を使用
+    // - contents に "return" が含まれていない場合、自動的に "return " を追加
+    return new Function(
+        ...argArray, 
+        contents.includes("return") ? contents : `return ${contents}`
+    );
 };

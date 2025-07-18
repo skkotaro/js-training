@@ -1,21 +1,27 @@
-// 可変長引数を受け取り、以下の仕様でオブジェクトを返却する関数 sequenceToObject(...values)を作成しなさい。
-
-// 奇数番に string の値を受け取り偶数番に任意の値を受け取り、各偶数奇数のペアで {奇数番の値: 偶数番の値}の形式になるオブジェクトを返却する。例えばsequenceToObject("a", 1, "b", 2)は{a: 1, b: 2}を返却する
-// いずれかの奇数番の値が string でない場合、または値の個数の合計が偶数ではない場合は例外を発生させる
-
-// また作成した sequenceToObject に対してスプレッド演算子で配列を与えられることを確認しなさい。
-export function sequenceToObject (...values: (string | number)[]) {
+export function sequenceToObject(...values: (string | number)[]) {
+  // 結果を格納するオブジェクトを初期化
   const result: { [key: string]: number } = {};
+
+  // 引数を2つずつ処理するループ
   for (let i = 0; i < values.length; i += 2) {
+    // 偶数奇数のペアが揃っていない場合はエラーをスロー
     if (values[i + 1] === undefined) {
-        throw new Error("The number of arguments must be even.");
+      throw new Error("The number of arguments must be even.");
     }
+
+    // 奇数番目の値をキー、偶数番目の値を値として取得
     const key = values[i];
     const value = values[i + 1];
+
+    // 奇数番目の値が文字列でない場合はエラーをスロー
     if (typeof key !== "string") {
       throw new Error("Odd-indexed arguments must be strings.");
     }
+
+    // 結果オブジェクトにキーと値を追加
     result[key] = value as number;
   }
+
+  // 作成したオブジェクトを返却
   return result;
 }

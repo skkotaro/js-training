@@ -1,52 +1,68 @@
-// 文中の counter をグループ化したクロージャを持つ関数 counterGroup を実装しなさい。
-// 具体的には counterGroup は以下のメソッドを持つオブジェクトを返却しなさい。
-
-// counterGroup#newCounter(): 文中の count と reset 同等の機能を持つ counter オブジェクトを返却する
-// counterGroup#total(): これまで返却された counter が保持しているカウントの合計を返却する
-// counterGroup#average(): これまで返却された counter が保持しているカウントの平均を返却する。counterGroup に属する counter が 1 つ以上存在していない場合 TypeError をスローする
-// counterGroup#variance(): これまで返却された counter が保持しているカウントの分散を返却する。counterGroup に属する counter が 2 つ以上存在していない場合 TypeError をスローする
-
 export function counterGroup() {
+    // 全カウンターの合計値を保持する変数
     let total: number = 0;
+
+    // カウンターの数を保持する変数
     let countPieces: number = 0;
+
+    // 各カウンターの状態を保持する配列
     const countArray: { count: number }[] = [];
+
     return {
+        // 新しいカウンターを作成するメソッド
         newCounter: () => {
+            // 新しいカウンターオブジェクトを初期化
             const counterObj = { count: 0 };
+
+            // カウンターの数をインクリメント
             countPieces++;
+
+            // 新しいカウンターを配列に追加
             countArray.push(counterObj);
+
             return {
+                // カウンターの値をインクリメントし、その値を返すメソッド
                 count: () => {
-                    total ++;
-                    return counterObj.count++; // 現在のカウントを返す
+                    total++; // 全体の合計値をインクリメント
+                    return counterObj.count++; // 現在のカウントを返し、次回のためにインクリメント
                 },
-                reset: () =>{
-                    total -= counterObj.count; // totalから現在のcountを引く
-                    counterObj.count = 0; // countをリセット
+                // カウンターをリセットするメソッド
+                reset: () => {
+                    total -= counterObj.count; // 全体の合計値からこのカウンターの値を引く
+                    counterObj.count = 0; // カウンターの値をリセット
                 }
             };
         },
+        // 全カウンターの合計値を返すメソッド
         total: () => {
             return total;
         },
+        // 全カウンターの平均値を計算して返すメソッド
         average: function (): number {
             if (countPieces === 0) {
+                // カウンターが1つも存在しない場合はエラーをスロー
                 throw new TypeError("No counters available");
             }
-            return total / countPieces;
+            return total / countPieces; // 合計値をカウンターの数で割る
         },
+        // 全カウンターの分散を計算して返すメソッド
         variance: function () {
             let result: number = 0;
+
             if (countPieces < 2) {
+                // カウンターが2つ未満の場合はエラーをスロー
                 throw new TypeError("At least two counters are required for variance");
             }
-            const countAverage :number = this.average();
-            console.log(countAverage); // 1.5
+
+            // 平均値を計算
+            const countAverage: number = this.average();
+
+            // 各カウンターの値と平均値との差の2乗を計算し、分散を求める
             for (const counter of countArray) {
-                console.log("count" + counter.count + "countAverage" + countAverage + "countPieces" + countPieces); // 1.
-                result += Math.pow(counter.count - countAverage, 2)/countPieces;
+                result += Math.pow(counter.count - countAverage, 2) / countPieces;
             }
-            return result;
+
+            return result; // 分散を返す
         }
-    }
+    };
 }
