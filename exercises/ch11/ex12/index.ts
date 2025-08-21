@@ -1,20 +1,23 @@
 import { statSync } from "fs";
 // テキストでは独自のエラーとして ParseError や HTTPError クラスの例がありました。自分でも独自のエラーを実装しなさい。
 // エラーの例が思いつかない場合には、ファイルのパスを引数に受けとる関数で、ファイルのサイズが許容サイズをオーバーしている場合に投げるエラーを実装しなさい。
+// ファイルサイズが大きすぎる場合に投げる独自エラー
 class FileSizeError extends Error {
+    // ファイルパスを受け取り、エラーメッセージを設定
     constructor(filePath: string) {
         super(`ファイルサイズが最大を超えています: ${filePath}`);
-        this.name = "FileSizeError";
+        this.name = "FileSizeError"; // エラー名を設定
     }
 }
 
+// ファイルサイズをチェックし、50MBを超えていればエラーを投げる関数
 function checkFileSize(filePath: string) {
-     const fileSizeBytes = statSync(filePath).size;
-    const fileSizeMB = fileSizeBytes / (1024 * 1024);
+    const fileSizeBytes = statSync(filePath).size; // ファイルサイズ（バイト）を取得
+    const fileSizeMB = fileSizeBytes / (1024 * 1024); // MBに変換
     if (fileSizeMB > 50) { // 50MBを超える場合
-        throw new FileSizeError(filePath);
+        throw new FileSizeError(filePath); // 独自エラーを投げる
     }
-    console.log(`ファイルサイズは制限内です: ${fileSizeMB} MB`);
+    console.log(`ファイルサイズは制限内です: ${fileSizeMB} MB`); // 制限内の場合は出力
 }
 
 checkFileSize("/Users/seki/js-training/exercises/ch11/ex12/1mfile.txt");

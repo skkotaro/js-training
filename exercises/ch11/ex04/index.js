@@ -11,19 +11,19 @@ const rhsA = Array(K * M)
 const resultA = Array(N * M).fill(0.0);
 
 function arrayMultiply() {
-  resultA.fill(0.0);
-  // 問題: ここで resultA に lhsA と rhsA の乗算結果を格納してね
-
-for (let i = 0; i < N; ++i) {
+  resultA.fill(0.0); // 結果配列を0で初期化
+  // lhsAとrhsAの行列積を計算し、resultAに格納
+  //行と列ごとにループを回して、積和計算を行う
+  for (let i = 0; i < N; ++i) {
     for (let j = 0; j < M; ++j) {
-      let sum = 0.0;
-      for (let k = 0; k < K; ++k) {
-        sum += lhsA[i * K + k] * rhsA[k * M + j];
+      let sum = 0.0; // 要素ごとの合計値
+      for (let k = 0; k < K; ++k) { // 積和計算ループ
+        sum += lhsA[i * K + k] * rhsA[k * M + j]; // 対応する要素の積を加算
       }
-      resultA[i * M + j] = sum;
+      resultA[i * M + j] = sum; // 計算結果を格納
     }
   }
-  return resultA;
+  return resultA; // 結果配列を返す
 }
 
 // 型付き配列版 (Float64Array 以外の型も試してみると良い)
@@ -35,13 +35,15 @@ function typedArrayMultiply() {
   resultB.fill(0.0);
   // 問題: ここで resultB に lhsB と rhsB の乗算結果を格納してね
 
-for (let i = 0; i < N; ++i) {
+  // lhsBとrhsBの行列積を計算し、resultBに格納
+  //行と列ごとにループを回して、積和計算を行う
+  for (let i = 0; i < N; ++i) {
     for (let j = 0; j < M; ++j) {
-      let sum = 0.0;
-      for (let k = 0; k < K; ++k) {
-        sum += lhsB[i * K + k] * rhsB[k * M + j];
+      let sum = 0.0; // 要素ごとの合計値
+      for (let k = 0; k < K; ++k) { // 積和計算ループ
+        sum += lhsB[i * K + k] * rhsB[k * M + j]; // 対応する要素の積を加算
       }
-      resultB[i * M + j] = sum;
+      resultB[i * M + j] = sum; // 計算結果を格納
     }
   }
 

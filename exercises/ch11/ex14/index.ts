@@ -1,13 +1,14 @@
-// 以下の各関数を実装しなさい
-// 1.日本語文字列の配列を受け取り、文字列中の大文字・小文字("つ"と"っ"等)、濁点・半濁点("は"と"ば"と"ば"等)の違いを無視してソートする sortJapanese 関数
-// 2.Date オブジェクトを受け取り、令和6年4月2日 のように (和暦)y年m月d日 のフォーマットで日付の文字列を返す toJapaneseDateString 関数
-
+// 日本語の文字列配列を五十音順でソートする関数
 export function sortJapanese(arr: string[]): string[] {
+    // 日本語用のCollator（比較関数）を作成
     const japaneseCollator = new Intl.Collator('ja-JP', { sensitivity: 'base' }).compare;
+    // 比較関数を使ってソート
     return arr.sort(japaneseCollator);
 }
 
+// Dateオブジェクトを和暦（例: 令和6年4月2日）形式の文字列に変換する関数
 export function toJapaneseDateString(date: Date): string {
+    // 和暦・年月日・元号を含むフォーマットオプション
     const options: Intl.DateTimeFormatOptions = {
         year: 'numeric',
         month: 'numeric',
@@ -23,7 +24,7 @@ export function toJapaneseDateString(date: Date): string {
 }
 
 // テスト
-const japaneseStrings = ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"];
+const japaneseStrings = ["あ", "い", "う", "え", "お", "か","あ","あ","あ","あ","あ", "き", "く", "け", "こ"];
 console.log(sortJapanese(japaneseStrings)); // ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ"]
 
 const date = new Date(2024, 3, 2); // 令和6年4月2日
